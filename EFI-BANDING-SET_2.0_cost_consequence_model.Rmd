@@ -4,7 +4,7 @@ subtitle: "EFI-BANDING-SET 2.0, analysis report"
 author: "Thiago Carnaval"
 date: "`r paste('Model version 2.0, knitted', Sys.Date())`"
 params:
-  registry: "../parameters/parameter_registry_EFI-BANDING-SET_2.0_v1.0.xlsx"
+  registry: "parameter_registry_EFI-BANDING-SET_2.0_v1.0.xlsx"
   data: ""
   n_psa: 10000
   n_dom: 10000
@@ -77,10 +77,12 @@ knitr::opts_chunk$set(
 )
 
 # ── Inputs ──
-# Parameter registry: the single source of every model value (see parameters/README.md).
+# Parameter registry: the single source of every model value. Sheet "Parametros" has one row per
+# parameter (id, value, interval, events/total, distribution, source and location in the source,
+# note); sheet "Mortalidad" holds the life table; sheet "Leyenda" explains the status codes.
 reg_path <- normalizePath(params$registry, mustWork = TRUE)
 
-# Patient-level BANDING-SET data. The database is not distributed with this repository
+# Patient-level BANDING-SET data. The database is not distributed with the code
 # (it is held by the study group). Give its path in params$data or in the environment
 # variable BANDING_SET_DATA to re-estimate the empirical parameters and the descriptive
 # sections. Without it, the report takes the empirical parameters (events / total) from
